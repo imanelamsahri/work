@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Damaged buildings</title>
+  <!-- Mapbox CSS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+  <!-- Mapbox Draw CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css" rel="stylesheet">
+  <style>
+    html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Prend toute la hauteur de la fenêtre */
+  overflow: hidden; /* Désactive le scroll */
+  font-family: Arial, sans-serif;
+}
+
+    #map {
+      width: 100%;
+      height: 100vh;
+    }
+    
+    #controls {
+      margin: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+    }
+
+    select, #info-bar, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 0 5px;
+      border: 1px solid #142289;
+      border-radius: 5px;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #info-bar {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    #stats-container {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 300px;
+  height: 200px;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column; /* Organise le contenu en colonne */
+}
+
+#chart-title {
+  flex-shrink: 0; /* Le titre ne se rétrécit pas */
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+  color: rgb(41, 63, 209);
+}
+
+#chart-container {
+  flex-grow: 1; /* Le canvas prend le reste de l'espace */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  width: 100%;
+  height: auto;
+}
+  </style>
+</head>
+<body>
+  <h1 style="
+  text-align: center; 
+  margin: 0; 
+  padding: 20px; 
+  background-color: rgb(17, 17, 109); 
+  color: white;">
+  Explore damaged buildings
+</h1>
+
+  <div id="controls">
+    <select id="province-select">
+      <option value="">-- Toutes les provinces --</option>
+    </select>
+    <div id="info-bar">Chargement des données...</div>
+  </div>
+  <div id="map"></div>
+  <div id="stats-container">
+    <p style="text-align: center; font-weight: bold; margin-bottom: 10px;">E-chart</p>
+    <div id="chart-container">
+      <canvas id="building-chart"></canvas>
+    </div>
+  </div>
+    <div id="chart-container">
+      <canvas id="building-chart"></canvas>
+    </div>
+  </div>
+
+  <!-- Mapbox GL JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+  <!-- Mapbox Draw -->
+  <script src="https://cdn.jsdelivr.net/npm/@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.min.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Votre Script JS -->
+  <script type="module" src="try.js"></script>
+</body>
+</html>
